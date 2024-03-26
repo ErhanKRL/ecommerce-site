@@ -1,5 +1,5 @@
 // ProductDetailController.js
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { ProductDetail } from './ProductDetail';
 import { useParams } from 'react-router-dom';
 
@@ -12,23 +12,23 @@ export const ProductDetailController = () => {
   const [error, setError] = useState(false);
   const { id } = useParams();
 
-  const fetchProductDetail = async () => {
-    try {
-      const response = await fetch(`https://fakestoreapi.com/products/${id}`);
-      if (!response.ok) {
-        throw new Error();
-      }
-      const data = await response.json();
-      setProduct(data);
-      setLoading(false);
-    } catch (error) {
-      setError(true);
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchProductDetail();
+    const fetchProductDetail = async () => {
+      try {
+        const response = await fetch(`https://fakestoreapi.com/products/${id}`);
+        if (!response.ok) {
+          throw new Error();
+        }
+        const data = await response.json();
+        setProduct(data);
+        setLoading(false);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+      }
+    };
+
+    fetchProductDetail(); // Call fetchProductDetail inside the useEffect callback
   }, [id]);
 
   return (

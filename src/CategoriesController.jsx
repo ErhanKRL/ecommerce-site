@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { CategoriesList } from './CategoriesList';
 
-
 export const CategoriesController = ({ setActiveCategory, activeCategory }) => {
   const Loading = () => <div>Loading...</div>;
   const Error = () => <div>Error fetching data.</div>;
@@ -10,25 +9,25 @@ export const CategoriesController = ({ setActiveCategory, activeCategory }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  const fetchCategories = async () => {
-    console.log('fetching categories...');
-    try {
-      const response = await fetch('https://fakestoreapi.com/products/categories');
-      if (!response.ok) {
-        throw new Error();
-      }
-      const data = await response.json();
-      setCategories(data);
-      setLoading(false);
-    } catch (error) {
-      setError(true);
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchCategories();
-  },[]);
+    const fetchCategories = async () => {
+      console.log('fetching categories...');
+      try {
+        const response = await fetch('https://fakestoreapi.com/products/categories');
+        if (!response.ok) {
+          throw new Error();
+        }
+        const data = await response.json();
+        setCategories(data);
+        setLoading(false);
+      } catch (error) {
+        setError(true);
+        setLoading(false);
+      }
+    };
+
+    fetchCategories(); // Call fetchCategories inside the useEffect callback
+  }, []); // Empty dependency array to ensure the effect runs only once
 
   return (
     <div>
