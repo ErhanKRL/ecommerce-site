@@ -1,9 +1,11 @@
-import { useState } from 'react';
-import { CategoriesController } from './CategoriesController';
-import { ProductsController } from './ProductsController';
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { ProductDetailController } from './ProductDetailController';
+import { useState } from "react";
+import { CategoriesController } from "./CategoriesController";
+import { ProductsController } from "./ProductsController";
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ProductDetailController } from "./ProductDetailController";
+import { FavoritesController } from "./FavoritesController";
+import { Link } from "react-router-dom";
 
 function App() {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -16,13 +18,29 @@ function App() {
             path="/"
             element={
               <div>
-                <h1>Products</h1>
-                <CategoriesController setActiveCategory={setActiveCategory} activeCategory={activeCategory} />
+                <div className="title-container">
+                  <h1 className="title-container--title">Products</h1>
+                  <div className="nav">
+                    <ul>
+                      <li>
+                        <Link to="/">Products</Link>
+                      </li>
+                      <li>
+                        <Link to="/favorites">Favorites</Link>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <CategoriesController
+                  setActiveCategory={setActiveCategory}
+                  activeCategory={activeCategory}
+                />
                 <ProductsController activeCategory={activeCategory} />
               </div>
             }
           />
           <Route path="/product/:id" element={<ProductDetailController />} />
+          <Route path="/favorites" element={<FavoritesController />} />
         </Routes>
       </Router>
     </div>
@@ -31,5 +49,4 @@ function App() {
 
 export default App;
 
-
-//https://main--ecommercehyf.netlify.app/
+//https://ecommercehyf.netlify.app/

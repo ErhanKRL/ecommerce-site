@@ -11,7 +11,6 @@ export const CategoriesController = ({ setActiveCategory, activeCategory }) => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      console.log('fetching categories...');
       try {
         const response = await fetch('https://fakestoreapi.com/products/categories');
         if (!response.ok) {
@@ -26,8 +25,8 @@ export const CategoriesController = ({ setActiveCategory, activeCategory }) => {
       }
     };
 
-    fetchCategories(); // Call fetchCategories inside the useEffect callback
-  }, []); // Empty dependency array to ensure the effect runs only once
+    fetchCategories(); 
+  }, []); 
 
   return (
     <div>

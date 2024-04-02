@@ -1,4 +1,3 @@
-// ProductDetailController.js
 import { useState, useEffect } from 'react';
 import { ProductDetail } from './ProductDetail';
 import { useParams } from 'react-router-dom';
@@ -28,7 +27,7 @@ export const ProductDetailController = () => {
       }
     };
 
-    fetchProductDetail(); // Call fetchProductDetail inside the useEffect callback
+    fetchProductDetail(); 
   }, [id]);
 
   return (

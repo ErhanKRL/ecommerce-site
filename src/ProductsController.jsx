@@ -26,10 +26,8 @@ export const ProductsController = ({ activeCategory }) => {
             }
         };
 
-        fetchProducts(); // Call fetchProducts inside the useEffect callback
+        fetchProducts();
     }, [activeCategory]);
-    
-    console.log('rendering ProductsController');
     return (
         <div>
             {loading && <Loading />}
